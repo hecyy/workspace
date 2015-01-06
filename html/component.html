@@ -1,0 +1,66 @@
+<html>
+
+<head>
+
+
+<body>
+
+<template id='cool'>
+  <img src=''> <!-- </img> stupid -->
+  <div class='comment'></div>
+</template>
+
+<template id='counter'>
+<span>Instance: <b>0</b></span>
+<script> alert('wow')</script>
+</template>
+
+<script>
+  var tpl = document.querySelector('#cool');
+  tpl.content.querySelector('img').src =
+      'http://www.google.com/images/srpr/logo4w.png';
+  document.body.appendChild(tpl.content.cloneNode(true));
+  tpl.content.querySelector('img').src =
+      'http://darimonline.org/files/uploads/2011/10/g+-300x294.jpg';
+  document.body.appendChild(tpl.content.cloneNode(true));
+  
+  var cpl = document.getElementById('counter');
+  var b = cpl.content.querySelector('b');
+  b.textContent = parseInt(b.textContent) + 1;
+
+  document.body.appendChild(cpl.content.cloneNode(true));
+
+</script>
+
+<div id=host>
+  <h2>Steven</h2>
+  <h2>Huang</h2>
+  <div class=desc>
+    Title: <span> Digital Ninja</span>
+  </div>
+  <div>Not selected</div>
+  <h4>Footer text</h4>
+</div>
+
+
+<script>
+  var shadow = document.querySelector('#host').webkitCreateShadowRoot();
+  shadow.innerHTML = '<style>@host{h2 {color:red}}</style><header><content select="h4"></content></header><section> <cotent select="div.desc"></content> </section> <footer> <content select="h2"</content> </footer>'
+</script>
+
+<element name=x-foo constructor=XFoo>
+<section>I'm a custom element</section>
+<script>
+  var section = this.querySelector('section');
+  this.register({
+    prototype: {
+      readyCallback: function() {
+      this.textContent = section.textContent;
+      },
+      foo: function() { alsert('foo() called'); }
+      }
+  });
+</script>
+</element>
+
+<x-foo></x-foo>

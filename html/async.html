@@ -1,0 +1,10 @@
+<html>
+<head>
+  <div>Before delayed script</div>
+  <script>
+    document.addEventListener("DOMContentLoaded", 
+        function() {console.log("dom loaded")});
+  </script>
+  <script defer src="http://localhost:8899/async.js"></script>
+  <div>After delayed script, is it blocking?</div>
+<body>
