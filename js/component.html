@@ -1,0 +1,21 @@
+<html>
+
+<head>
+<script>
+  var pr = Object.create(HTMLElement.prototype);
+  pr.createdCallback = function() {
+    console.log('created');
+    console.log('this = ' + this);
+    this.__foo = 5;
+  };
+  pr.foo = function() {
+    console.log('calling foo()');
+    console.log('this = ' + this);
+    console.log('foo = ' + this.__foo);
+  };
+  var XFoo = document.registerElement('x-foo', {prototype: pr});
+  var el = new XFoo;
+  el.foo();
+
+
+</script>
