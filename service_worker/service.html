@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+
+<body>
+
+<script src='/service.js'></script>
+<div>
+  Hello, this is a service worker page
+</div>
+<div id=logo>
+  <img src='/logo11w.png'>
+</div>
+ 
+<script>
+if (navigator.serviceWorker) {
+	navigator.serviceWorker.register("/service.js", {scope: '/'}).then(
+		function(/* ServiceWorkerRegistration */ registration) {
+			console.log(registration);
+			if(registration.installing) {
+				console.log(registration.installing);
+				registration.installing.addEventListener('statechange', function(e){
+					console.log(e);
+					switch (e.target.state) {
+					  case 'installed':
+						  console.log('installed');
+						  break;
+						case 'activated':
+						  console.log('activated');
+						  break;
+						case 'redundant':
+						  console.log('Redundant');
+						default:
+						  console.log("State: " + e.target.state);
+					
+					}
+				});
+			}		
+		},
+		function(error) {
+			console.error("Service worker registration failed: " + error);
+		});
+}
+</script>
