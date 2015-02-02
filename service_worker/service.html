@@ -14,31 +14,31 @@
  
 <script>
 if (navigator.serviceWorker) {
-	navigator.serviceWorker.register("/service.js", {scope: '/'}).then(
-		function(/* ServiceWorkerRegistration */ registration) {
-			console.log(registration);
-			if(registration.installing) {
-				console.log(registration.installing);
-				registration.installing.addEventListener('statechange', function(e){
-					console.log(e);
-					switch (e.target.state) {
-					  case 'installed':
-						  console.log('installed');
-						  break;
-						case 'activated':
-						  console.log('activated');
-						  break;
-						case 'redundant':
-						  console.log('Redundant');
-						default:
-						  console.log("State: " + e.target.state);
-					
-					}
-				});
-			}		
-		},
-		function(error) {
-			console.error("Service worker registration failed: " + error);
-		});
+  navigator.serviceWorker.register("/service.js", {scope: '/'}).then(
+    function(/* ServiceWorkerRegistration */ registration) {
+      console.log(registration);
+      if(registration.installing) {
+        console.log(registration.installing);
+        registration.installing.addEventListener('statechange', function(e){
+          console.log(e);
+          switch (e.target.state) {
+            case 'installed':
+              console.log('installed');
+              break;
+            case 'activated':
+              console.log('activated');
+              break;
+            case 'redundant':
+              console.log('Redundant');
+            default:
+              console.log("State: " + e.target.state);
+          
+          }
+        });
+      }    
+    },
+    function(error) {
+      console.error("Service worker registration failed: " + error);
+    });
 }
 </script>
